@@ -1,0 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    /* Card colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    /* Primary colors - Taxi Yellow */
+    --primary: 43 96% 56%;
+    --primary-foreground: 222.2 84% 4.9%;
+
+    /* Secondary colors - Professional Black */
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    /* Muted colors */
+    --muted: 210 40% 98%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    /* Accent colors */
+    --accent: 210 40% 98%;
+    --accent-foreground: 222.2 84% 4.9%;
+
+    /* Destructive colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border and input colors */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 43 96% 56%;
+
+    /* Border radius */
+    --radius: 0.5rem;
+
+    /* Taxi-specific CSS variables */
+    --taxi-yellow-primary: 43 96% 56%;
+    --taxi-yellow-hover: 43 96% 50%;
+    --taxi-yellow-light: 48 100% 88%;
+    --taxi-black-primary: 220 13% 18%;
+    --taxi-black-light: 220 13% 91%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 43 96% 56%;
+    --primary-foreground: 222.2 84% 4.9%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 43 96% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Typography improvements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  /* Taxi-specific utility classes */
+  .taxi-gradient {
+    background: linear-gradient(135deg, theme('colors.taxi.yellow.500') 0%, theme('colors.taxi.yellow.300') 100%);
+  }
+
+  .taxi-shadow {
+    box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.15);
+  }
+
+  .taxi-shadow-lg {
+    box-shadow: 0 10px 25px -3px rgba(245, 158, 11, 0.2), 0 4px 6px -2px rgba(245, 158, 11, 0.1);
+  }
+
+  /* High contrast mode for accessibility */
+  .high-contrast {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --primary: 60 100% 50%;
+    --border: 0 0% 100%;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .mobile-optimized {
+      font-size: 16px; /* Prevent zoom on iOS */
+    }
+  }
+
+  /* Focus styles for accessibility */
+  .focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Loading states */
+  .loading-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  /* Status indicators */
+  .status-online {
+    @apply bg-success-500;
+  }
+
+  .status-offline {
+    @apply bg-gray-400;
+  }
+
+  .status-busy {
+    @apply bg-warning-500;
+  }
+
+  .status-emergency {
+    @apply bg-error-500;
+  }
+}
+
+@layer components {
+  /* Taxi-specific component styles */
+  .taxi-card {
+    @apply bg-white rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .taxi-button-primary {
+    @apply bg-taxi-yellow-500 hover:bg-taxi-yellow-600 text-taxi-black-900 font-medium px-4 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-taxi-yellow-500 focus:ring-offset-2;
+  }
+
+  .taxi-button-secondary {
+    @apply bg-white hover:bg-gray-50 text-taxi-black-700 border border-gray-300 font-medium px-4 py-2 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-taxi-yellow-500 focus:ring-offset-2;
+  }
+
+  .taxi-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-taxi-yellow-500 focus:border-taxi-yellow-500;
+  }
+
+  /* Dashboard layouts */
+  .dashboard-sidebar {
+    @apply w-64 bg-white border-r border-gray-200 flex flex-col;
+  }
+
+  .dashboard-main {
+    @apply flex-1 flex flex-col overflow-hidden;
+  }
+
+  .dashboard-header {
+    @apply bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between;
+  }
+
+  .dashboard-content {
+    @apply flex-1 overflow-auto p-6;
+  }
+}
